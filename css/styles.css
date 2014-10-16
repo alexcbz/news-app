@@ -1,0 +1,19 @@
+/* Custom Styles */
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+
+.container {
+	padding: 15px 10px;
+}
+
+.container .link {
+	cursor: pointer;
+}
+
+.container .media img {
+	width: 50px;
+}

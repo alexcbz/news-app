@@ -1,0 +1,65 @@
+<html lang="en" ng-app="AngularApp">
+<head>
+	<title>Angular JSON App</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+	<div class="container" ng-controller="NewsController">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Latest news</h3>
+			</div>
+			<div class="panel-body">
+				<!-- Show when data is loading -->
+				<p ng-if="isLoading">
+					<em>Loading data...</em>
+				</p>
+
+				<!-- Show when data has finished loading -->
+				<ul class="media-list" ng-if="!isLoading">
+					<li class="media" ng-repeat="(key, item) in news | limitTo:10">
+						<a class="pull-left">
+							<img class="media-object img-thumbnail" ng-src="{{item['media:thumbnail'] ? item['media:thumbnail'].url : item['media:content'].url}}" src="images/default.jpg" alt="">
+						</a>
+						<div class="media-body">
+							<h5 class="media-heading"><a class="link" data-toggle="modal" data-target="#article" ng-click="setArticle(key)">{{item.title}}</a></h5>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="panel-footer">
+				<button type="button" class="btn btn-default" ng-click="refresh()"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="article" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="ArticleController">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="myModalLabel">{{article.title}}</h4>
+				</div>
+				<div class="modal-body">
+					{{article.description | htmlToText}}
+					<a href="{{article.link}}" target="_blank">Source</a>
+				</div>
+				<div class="modal-footer">
+					<a href="{{article.link}}" type="button" class="btn btn-primary pull-left" target="_blank">Read More</a>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>	
+	
+	<script type="text/javascript" src="js/lib/angular.min.js"></script>
+	<script type="text/javascript" src="js/lib/angular-resource.min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
