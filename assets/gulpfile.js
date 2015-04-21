@@ -1,23 +1,14 @@
-// include gulp
+// load gulp and necessary plugins
 var gulp = require('gulp');
-
-// check for js errors plugin
 var jshint = require('gulp-jshint');
-
-// image minify plugins
 var changed = require('gulp-changed');
 var imagemin = require('gulp-imagemin');
-
-// js minify plugins
 var concat = require('gulp-concat');
 var stripDebug = require('gulp-strip-debug');
 var uglify = require('gulp-uglify');
 var ngAnnotate = require('gulp-ng-annotate');
-
-// css minify plugins
 var autoprefix = require('gulp-autoprefixer');
 var minifyCSS = require('gulp-minify-css');
-
 
 // check for js errors and warnings in app.js
 gulp.task('jshint', function() {

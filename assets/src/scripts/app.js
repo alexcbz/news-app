@@ -1,8 +1,6 @@
 (function() {
-	// Define our app and list of additional modules
 	var app = angular.module('AngularApp', ['ngResource', 'customFilters']);
 
-	// Main news controller
 	app.controller('NewsController', function($scope, $resource, News) {
 		// Check if the page is currently in a loading state
 		$scope.isLoading = false;
@@ -52,7 +50,6 @@
 		};
 	});
 
-	// Modal article controller
 	app.controller('ArticleController', function($scope, News) {
 		$scope.$on('valuesUpdated', function() {
 			$scope.article = News.getArticle();

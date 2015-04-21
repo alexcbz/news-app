@@ -14,12 +14,10 @@
 				<h3 class="panel-title">Latest news</h3>
 			</div>
 			<div class="panel-body">
-				<!-- Show when data is loading -->
 				<p ng-if="isLoading">
 					<em>Loading data...</em>
 				</p>
 
-				<!-- Show when data has finished loading -->
 				<ul class="media-list" ng-if="!isLoading">
 					<li class="media" ng-repeat="(key, item) in news | limitTo:10">
 						<a class="pull-left">
@@ -37,7 +35,7 @@
 		</div>
 	</div>
 
-	<!-- Modal -->
+	<!-- Article modal -->
 	<div class="modal fade" id="article" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="ArticleController">
 		<div class="modal-dialog">
 			<div class="modal-content">
