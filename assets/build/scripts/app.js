@@ -3,7 +3,7 @@
 	var app = angular.module('AngularApp', ['ngResource', 'customFilters']);
 
 	// Main news controller
-	app.controller('NewsController', function($scope, $resource, News) {
+	app.controller('NewsController', ["$scope", "$resource", "News", function($scope, $resource, News) {
 		// Check if the page is currently in a loading state
 		$scope.isLoading = false;
 
@@ -50,17 +50,17 @@
 		$scope.setArticle = function(key) {
 			News.setArticle($scope.news[key]);
 		};
-	});
+	}]);
 
 	// Modal article controller
-	app.controller('ArticleController', function($scope, News) {
+	app.controller('ArticleController', ["$scope", "News", function($scope, News) {
 		$scope.$on('valuesUpdated', function() {
 			$scope.article = News.getArticle();
 		});
-	});
+	}]);
 
 	// Pass data between the two controllers using a factory
-	app.factory('News', function ($rootScope) {
+	app.factory('News', ["$rootScope", function ($rootScope) {
 		var article = {};
 
 		return {
@@ -72,13 +72,13 @@
 				$rootScope.$broadcast("valuesUpdated");
 			}
 		};
-	});
+	}]);
 
 	// Create custom filter to strip html tags
 	angular.module('customFilters', []).
 		filter('htmlToText', function() {
 			return function(text) {
 				return String(text).replace(/<[^>]+>/gm, '');
-		}
-	});
+			};
+		});
 })();

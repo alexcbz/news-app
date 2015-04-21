@@ -3,7 +3,9 @@
 	<title>Angular JSON App</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="assets/styles/site.css">
+	<link rel="stylesheet" type="text/css" href="assets/src/styles/site.css">
+	<!-- minified stylesheet -->
+	<!-- <link rel="stylesheet" type="text/css" href="assets/build/styles/styles.min.css"> -->
 </head>
 <body>
 	<div class="container" ng-controller="NewsController">
@@ -21,7 +23,7 @@
 				<ul class="media-list" ng-if="!isLoading">
 					<li class="media" ng-repeat="(key, item) in news | limitTo:10">
 						<a class="pull-left">
-							<img class="media-object img-thumbnail" ng-src="{{item['media:thumbnail'] ? item['media:thumbnail'].url : item['media:content'].url}}" src="assets/images/default.jpg" alt="">
+							<img class="media-object img-thumbnail" ng-src="{{item['media:thumbnail'] ? item['media:thumbnail'].url : item['media:content'].url}}" src="assets/src/images/default.jpg" alt="">
 						</a>
 						<div class="media-body">
 							<h5 class="media-heading"><a class="link" data-toggle="modal" data-target="#article" ng-click="setArticle(key)">{{item.title}}</a></h5>
@@ -55,11 +57,13 @@
 		</div>
 	</div>	
 	
-	<script type="text/javascript" src="assets/scripts/lib/angular.min.js"></script>
-	<script type="text/javascript" src="assets/scripts/lib/angular-resource.min.js"></script>
-	<script type="text/javascript" src="assets/scripts/lib/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript" src="assets/scripts/ie10-viewport-bug-workaround.js"></script>
-	<script type="text/javascript" src="assets/scripts/bootstrap/modal.js"></script>
-	<script type="text/javascript" src="assets/scripts/app.js"></script>
+	<script type="text/javascript" src="assets/src/scripts/lib/angular.min.js"></script>
+	<script type="text/javascript" src="assets/src/scripts/lib/angular-resource.min.js"></script>
+	<script type="text/javascript" src="assets/src/scripts/lib/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="assets/src/scripts/ie10-viewport-bug-workaround.js"></script>
+	<script type="text/javascript" src="assets/src/scripts/bootstrap/modal.js"></script>
+	<script type="text/javascript" src="assets/src/scripts/app.js"></script>
+	<!-- minified scripts -->
+	<!--<script type="text/javascript" src="assets/build/scripts/scripts.min.js"></script>-->
 </body>
 </html>
