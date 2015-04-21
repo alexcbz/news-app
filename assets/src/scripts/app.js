@@ -1,5 +1,5 @@
 (function() {
-	var app = angular.module('AngularApp', ['ngResource', 'customFilters']);
+	var app = angular.module('NewsApp', ['ngResource', 'customFilters']);
 
 	app.controller('NewsController', function($scope, $resource, News) {
 		// Check if the page is currently in a loading state
@@ -15,25 +15,25 @@
 				callback: "JSON_CALLBACK"
 			},
 			{
-				getNews: {
+				newsData: {
 					method: "jsonp"
 				}
 			}
 		);
 
 		// Get the list of news
-		loadRemoteData();
+		getLatestNews();
 
-		// Re-request the data from the server (using JSONP)
+		// Re-request the data from the server
 		$scope.refresh = function() {
-			loadRemoteData();
+			getLatestNews();
 		};
 
 		// Load the remote data using resource service
-		function loadRemoteData() {
+		function getLatestNews() {
 			$scope.isLoading = true;
 
-			resource.getNews().$promise.then(
+			resource.newsData().$promise.then(
 				function(data) {
 					$scope.isLoading = false;
 					$scope.news = data.value.items;
